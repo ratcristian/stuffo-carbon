@@ -9,7 +9,7 @@ my $build = Module::Build->new(
 	module_name => 'Stuffo::Carbon',
 
 	dist_author => 'Tudor Marghidanu',
-	dist_abstract => '',
+	dist_abstract => 'Distribute files in multiple backends',
 
 	share_dir => 'share',
 
