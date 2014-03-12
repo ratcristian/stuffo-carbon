@@ -17,7 +17,7 @@ perl Build.PL
 
 ```
 <VirtualHost *:80>
-	<Location />
+	<Location /carbon>
 		SetHandler perl-script
 		PerlResponseHandler Plack::Handler::Apache2
 		PerlSetVar psgi_app [/path/to/stuffo-carbon.pl]
