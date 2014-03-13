@@ -1,9 +1,18 @@
 {
 	"configurations" : {
-		"seed" : {
+		"seed-local" : {
 			"plugin" : "local",
 			"plugin_args" : {},
-			"destination" : "/tmp/seed.txt"
+			"destination" : "/tmp/seed-local.txt"
+		},
+
+		"seed-scp" : {
+			"plugin" : "scp",
+			"plugin_args" : {
+				"host" : "localhost",
+				"user" : "developer"
+			},
+			"destination" : "/tmp/seed-scp.txt"
 		}
 	}
 }

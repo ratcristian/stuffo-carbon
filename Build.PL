@@ -17,6 +17,7 @@ my $build = Module::Build->new(
 	requires => {
 		'Config::JSON' => undef,
 		'File::Slurp' => undef,
+		'File::Temp' => undef,
 		'Mojolicious' => undef,
 		'Moose' => undef,
 		'MooseX::AbstractFactory' => undef,
