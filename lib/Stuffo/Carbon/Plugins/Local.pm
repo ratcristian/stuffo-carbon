@@ -18,7 +18,6 @@ sub get {
 	return read_file( $config->{destination} );
 }
 
-
 __PACKAGE__->meta()->make_immutable();
 
 1;

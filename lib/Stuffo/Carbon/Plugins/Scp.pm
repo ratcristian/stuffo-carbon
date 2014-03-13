@@ -52,9 +52,16 @@ sub put {
 }
 
 sub get {
-	my $self = shift();
-}
+	my ( $self, $config ) = @_;
 
+	my ( $fh, $filename ) = tempfile();
+	$self->_scp()->get( $config->{destination}, $filename );
+
+	my $content = read_file( $filename );
+	unlink( $filename );
+
+	return $content;
+}
 
 __PACKAGE__->meta()->make_immutable();
 

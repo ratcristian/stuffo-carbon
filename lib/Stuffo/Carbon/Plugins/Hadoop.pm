@@ -39,7 +39,9 @@ sub put {
 }
 
 sub get {
-	my $self = shift();
+	my ( $self, $config ) = @_;
+
+	# TODO: Implement this!
 }
 
 __PACKAGE__->meta()->make_immutable();
