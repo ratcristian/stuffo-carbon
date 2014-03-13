@@ -33,7 +33,7 @@ perl Build.PL
 
 ### Local
 
-```
+```javascript
 {
 	"configurations" : {
 		"lorem" : {
@@ -47,7 +47,7 @@ perl Build.PL
 
 ### SCP
 
-```
+```javascript
 {
 	"configurations" : {
 		"lorem" : {
@@ -76,7 +76,7 @@ ssh-copy-id -i /var/www/.ssh/id_rsa.pub user@host
 
 ### FTP
 
-```
+```javascript
 {
 	"configurations" : {
 		"lorem" : {
@@ -94,3 +94,5 @@ ssh-copy-id -i /var/www/.ssh/id_rsa.pub user@host
 ```
 
 ### Hadoop
+
+TODO
