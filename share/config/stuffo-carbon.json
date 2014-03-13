@@ -24,6 +24,15 @@
 				"password" : "developer",
 			},
 			"destination" : "/tmp/seed-ftp.txt"
+		},
+
+		"seed-hadoop" : {
+			"plugin" : "hadoop",
+			"plugin_args" : {
+				"host" : "namenode1",
+				"port" : 50070,
+			},
+			"destination" : "/tmp/seed-hadoop.txt"
 		}
 	}
 }
