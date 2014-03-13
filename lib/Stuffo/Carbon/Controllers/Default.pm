@@ -23,7 +23,12 @@ sub index {
 			$config_model->plugin_args(),
 		);
 
-		#$plugin->copy();
+		$plugin->copy(
+			{
+				content => $self->req()->body(),
+				destination => $config_model->destination(),
+			}
+		);
 	};
 
 	if( my $error = $@ ) {

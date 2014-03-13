@@ -1,9 +1,9 @@
 {
 	"configurations" : {
-		"seed.txt" : {
-			"plugin" : "hadoop",
+		"seed" : {
+			"plugin" : "local",
 			"plugin_args" : {},
-			"destination" : "/seed.txt"
+			"destination" : "/tmp/seed.txt"
 		}
 	}
 }

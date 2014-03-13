@@ -9,7 +9,7 @@ sub startup {
 
 	$self->routes()
 		->post( '/api/:config')->to( 
-			controller => 'Stuffo::Carbon::Controllers::Default', 
+			controller => 'Controllers::Default',
 			action => 'index',
 		);
 }
