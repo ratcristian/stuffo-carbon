@@ -4,7 +4,9 @@ use Moose;
 
 use MooseX::AbstractMethod;
 
-abstract 'copy';
+abstract 'put';
+
+abstract 'get';
 
 __PACKAGE__->meta()->make_immutable();
 

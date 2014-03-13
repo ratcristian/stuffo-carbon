@@ -10,13 +10,13 @@ sub startup {
 	# --- Routes
 
 	$self->routes()
-		->post( '/api/copy/:config')->to( 
+		->post( '/api/put/:config')->to( 
 			controller => 'Controllers::Default',
-			action => 'copy',
+			action => 'put',
 		);
 
 	$self->routes()
-		->any( '/api/info/:config' )->to(
+		->any( '/api/get/:config' )->to(
 			controller => 'Controllers::Default',
 			action => 'info',
 		);

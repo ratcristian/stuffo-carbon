@@ -52,7 +52,7 @@ has '_ftp' => (
 	}
 );
 
-sub copy {
+sub put {
 	my ( $self, $config ) = @_;
 
 	my ( $fh, $filename ) = tempfile();
@@ -60,6 +60,11 @@ sub copy {
 
 	$self->_ftp()->put( $filename, $config->{destination} );
 }
+
+sub get {
+	my $self = shift();
+}
+
 
 __PACKAGE__->meta()->make_immutable();
 

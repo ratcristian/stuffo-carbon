@@ -32,10 +32,14 @@ has '_hadoop' => (
 	}
 );
 
-sub copy {
+sub put {
 	my ( $self, $config ) = @_;
 
 	$self->_hadoop()->create( $config->{destination}, $config->{content} );
+}
+
+sub get {
+	my $self = shift();
 }
 
 __PACKAGE__->meta()->make_immutable();

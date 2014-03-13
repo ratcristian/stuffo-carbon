@@ -6,7 +6,7 @@ use Stuffo::Carbon::Globals;
 use Stuffo::Carbon::ModelFactory;
 use Stuffo::Carbon::PluginFactory;
 
-sub copy {
+sub put {
 	my $self = shift();
 
 	my $config = Stuffo::Carbon::Globals->config()
@@ -18,7 +18,7 @@ sub copy {
 	my $model = Stuffo::Carbon::ModelFactory->create( 'configuration', $config );
 	my $plugin = Stuffo::Carbon::PluginFactory->create( $model->plugin(), $model->plugin_args() );
 
-	$plugin->copy(
+	$plugin->put(
 		{
 			content => $self->req()->body(),
 			destination => $model->destination(),
