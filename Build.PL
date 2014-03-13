@@ -23,6 +23,7 @@ my $build = Module::Build->new(
 		'MooseX::AbstractFactory' => undef,
 		'MooseX::AbstractMethod' => undef,
 		'MooseX::ClassAttribute' => undef,
+		'MooseX::Storage' => undef,
 		'Net::FTP' => undef,
 		'Net::Hadoop::WebHDFS' => undef,
 		'Net::SCP' => undef,

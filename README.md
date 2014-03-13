@@ -47,18 +47,6 @@ perl Build.PL
 
 ### SCP
 
-Key configuration
-
-```
-sudo su -
-mkdir -p /var/www/.ssh
-chown -R www-data:www-data /var/www/.ssh
-
-su - www-data
-ssh-keygen -t rsa
-ssh-copy-id -i /var/www/.ssh/id_rsa.pub user@host
-```
-
 ```
 {
 	"configurations" : {
@@ -72,6 +60,18 @@ ssh-copy-id -i /var/www/.ssh/id_rsa.pub user@host
 		},
 	}
 }
+```
+
+Authentication is based on SSH keys, below is an example on how to configure the Apache user in Ubuntu.
+
+```
+sudo su -
+mkdir -p /var/www/.ssh
+chown -R www-data:www-data /var/www/.ssh
+
+su - www-data
+ssh-keygen -t rsa
+ssh-copy-id -i /var/www/.ssh/id_rsa.pub user@host
 ```
 
 ### FTP

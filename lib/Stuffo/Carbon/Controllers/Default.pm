@@ -21,7 +21,7 @@ sub copy {
 	$plugin->copy(
 		{
 			content => $self->req()->body(),
-			destination => $config_model->destination(),
+			destination => $model->destination(),
 		}
 	);
 
@@ -37,7 +37,9 @@ sub info {
 	return $self->render_not_found()
 		unless( $config );
 
-	return $self->render( json => $config );
+	my $model = Stuffo::Carbon::ModelFactory->create( 'configuration', $config );
+
+	return $self->render( json => $model->pack() );
 }
 
 1;
