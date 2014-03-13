@@ -7,10 +7,18 @@ our $VERSION = '1.0';
 sub startup {
 	my $self = shift();
 
+	# --- Routes
+
 	$self->routes()
-		->post( '/api/:config')->to( 
+		->post( '/api/copy/:config')->to( 
 			controller => 'Controllers::Default',
-			action => 'index',
+			action => 'copy',
+		);
+
+	$self->routes()
+		->any( '/api/info/:config' )->to(
+			controller => 'Controllers::Default',
+			action => 'info',
 		);
 }
 
