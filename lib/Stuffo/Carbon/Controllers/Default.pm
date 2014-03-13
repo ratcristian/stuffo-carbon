@@ -15,25 +15,19 @@ sub index {
 	return $self->render_not_found()
 		unless( $config );
 
-	eval {
-		my $config_model = Stuffo::Carbon::ModelFactory->create( 'configuration', $config );
+	my $config_model = Stuffo::Carbon::ModelFactory->create( 'configuration', $config );
 
-		my $plugin = Stuffo::Carbon::PluginFactory->create(
-			$config_model->plugin(),
-			$config_model->plugin_args(),
-		);
+	my $plugin = Stuffo::Carbon::PluginFactory->create(
+		$config_model->plugin(),
+		$config_model->plugin_args(),
+	);
 
-		$plugin->copy(
-			{
-				content => $self->req()->body(),
-				destination => $config_model->destination(),
-			}
-		);
-	};
-
-	if( my $error = $@ ) {
-		$self->render_exception( $error );
-	}
+	$plugin->copy(
+		{
+			content => $self->req()->body(),
+			destination => $config_model->destination(),
+		}
+	);
 
 	return $self->render( json => {} );
 }

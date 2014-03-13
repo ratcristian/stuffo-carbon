@@ -13,6 +13,17 @@
 				"user" : "developer"
 			},
 			"destination" : "/tmp/seed-scp.txt"
+		},
+
+		"seed-ftp" : {
+			"plugin" : "ftp",
+			"plugin_args" : {
+				"host" : "localhost",
+				"port" : 21,
+				"user" : "developer",
+				"password" : "developer",
+			},
+			"destination" : "/tmp/seed-ftp.txt"
 		}
 	}
 }
