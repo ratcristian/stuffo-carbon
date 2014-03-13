@@ -31,14 +31,22 @@ perl Build.PL
 
 ## Configuration
 
+### Local
+
 ```
 {
 	"configurations" : {
-		"seed" : {
+		"lorem" : {
 			"plugin" : "local",
 			"plugin_args" : {},
-			"destination" : "/tmp/seed.txt"
+			"destination" : "/tmp/lorem.txt"
 		}
 	}
 }
 ```
+
+### SSH
+
+### FTP
+
+### Hadoop
