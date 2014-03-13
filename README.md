@@ -59,6 +59,38 @@ ssh-keygen -t rsa
 ssh-copy-id -i /var/www/.ssh/id_rsa.pub user@host
 ```
 
+```
+{
+	"configurations" : {
+		"lorem" : {
+			"plugin" : "scp",
+			"plugin_args" : {
+				"host" : "localhost",
+				"user" : "developer"
+			},
+			"destination" : "/tmp/lorem.txt"
+		},
+	}
+}
+```
+
 ### FTP
+
+```
+{
+	"configurations" : {
+		"lorem" : {
+			"plugin" : "ftp",
+			"plugin_args" : {
+				"host" : "localhost",
+				"port" : 21,
+				"user" : "user",
+				"password" : "password",
+			},
+			"destination" : "/tmp/lorem.txt"
+		}
+	}
+}
+```
 
 ### Hadoop
