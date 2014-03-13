@@ -28,6 +28,19 @@ sub put {
 	return $self->render( json => {} );
 }
 
+sub get {
+	my $self = shift();
+
+	# TODO: Implement this!
+
+	return $self->render( json => 
+		{
+			name => '',
+			content => '',
+		} 
+	);
+}
+
 sub info {
 	my $self = shift();
 

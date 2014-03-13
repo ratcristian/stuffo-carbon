@@ -13,9 +13,9 @@ sub put {
 }
 
 sub get {
-	my $self = shift();
+	my ( $self, $config ) = @_;
 
-	return read_file( $config->{destination} )
+	return read_file( $config->{destination} );
 }
 
 

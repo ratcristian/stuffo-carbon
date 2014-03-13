@@ -16,7 +16,13 @@ sub startup {
 		);
 
 	$self->routes()
-		->any( '/api/get/:config' )->to(
+		->get( '/api/get/:config' )->to(
+			controller => 'Controllers::Default',
+			action => 'get',
+		);
+
+	$self->routes()
+		->any( '/api/info/:config' )->to(
 			controller => 'Controllers::Default',
 			action => 'info',
 		);
