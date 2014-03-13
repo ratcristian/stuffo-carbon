@@ -16,6 +16,7 @@ my $build = Module::Build->new(
 	# NOTE: Keep this list ordered!
 	requires => {
 		'Config::JSON' => undef,
+		'File::Basename' => undef,
 		'File::Slurp' => undef,
 		'File::Temp' => undef,
 		'Mojolicious' => undef,

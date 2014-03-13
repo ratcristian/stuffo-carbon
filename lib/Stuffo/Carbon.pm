@@ -7,6 +7,8 @@ our $VERSION = '1.0';
 sub startup {
 	my $self = shift();
 
+	$self->secrets( [ 'st4r_tr3k' ] );
+
 	# --- Routes
 
 	$self->routes()

@@ -22,6 +22,7 @@ perl Build.PL
 ```
 <VirtualHost *:80>
 	SetEnv STUFFO_CARBON_CONFIG [/path/to/configuration.json]
+	SetEnv MOJO_MODE production
 
 	<Location /carbon>
 		SetHandler perl-script
