@@ -97,4 +97,17 @@ ssh-copy-id -i /var/www/.ssh/id_rsa.pub user@host
 
 ### Hadoop
 
-TODO
+```javascript
+{
+	"configurations" : {
+		"lorem" : {
+			"plugin" : "hadoop",
+			"plugin_args" : {
+				"host" : "nodename",
+				"port" : 50070,
+			},
+			"destination" : "/tmp/lorem.txt"
+		}
+	}
+}
+```
