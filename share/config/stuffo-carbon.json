@@ -32,7 +32,7 @@
 				"host" : "namenode1",
 				"port" : 50070,
 			},
-			"destination" : "/tmp/seed-hadoop.txt"
+			"destination" : "/seed-hadoop.txt"
 		}
 	}
 }

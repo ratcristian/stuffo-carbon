@@ -35,7 +35,12 @@ has '_hadoop' => (
 sub put {
 	my ( $self, $config ) = @_;
 
-	$self->_hadoop()->create( $config->{destination}, $config->{content} );
+	$self->_hadoop()->create( 
+		$config->{destination}, 
+		$config->{content},
+
+		overwrite => 'true',
+	);
 }
 
 sub get {
