@@ -2,20 +2,16 @@ package Stuffo::Carbon::Controllers::Default;
 
 use Mojo::Base 'Mojolicious::Controller';
 
-use Stuffo::Carbon::Globals;
-use Stuffo::Carbon::ModelFactory;
 use Stuffo::Carbon::PluginFactory;
+use Stuffo::Carbon::Helpers::Configuration qw( get_model_from_name );
 
 sub put {
 	my $self = shift();
 
-	my $config = Stuffo::Carbon::Globals->config()
-		->get( sprintf( 'configurations/%s', $self->param( 'config' ) ) );
-
+	my $model = get_model_from_name( $self->param( 'config' ) );
 	return $self->render_not_found()
-		unless( $config );
+		unless( $model );
 
-	my $model = Stuffo::Carbon::ModelFactory->create( 'configuration', $config );
 	my $plugin = Stuffo::Carbon::PluginFactory->create( $model->plugin(), $model->plugin_args() );
 
 	$plugin->put(
@@ -31,14 +27,10 @@ sub put {
 sub get {
 	my $self = shift();
 
-	# TODO: Duplicate code, need to solve this...
-	my $config = Stuffo::Carbon::Globals->config()
-		->get( sprintf( 'configurations/%s', $self->param( 'config' ) ) );
-
+	my $model = get_model_from_name( $self->param( 'config' ) );
 	return $self->render_not_found()
-		unless( $config );
+		unless( $model );
 
-	my $model = Stuffo::Carbon::ModelFactory->create( 'configuration', $config );
 	my $plugin = Stuffo::Carbon::PluginFactory->create( $model->plugin(), $model->plugin_args() );
 
 	my $content = $plugin->get(
@@ -49,25 +41,20 @@ sub get {
 
 	# TODO: Extract only the filename from the path using File::Basename
 
-	return $self->render( json => 
+	return $self->render( json =>
 		{
 			name => $model->destination(),
 			content => $content,
-		} 
+		}
 	);
 }
 
 sub info {
 	my $self = shift();
 
-	# TODO: More duplicate code...
-	my $config = Stuffo::Carbon::Globals->config()
-		->get( sprintf( 'configurations/%s', $self->param( 'config' ) ) );
-
+	my $model = get_model_from_name( $self->param( 'config' ) );
 	return $self->render_not_found()
-		unless( $config );
-
-	my $model = Stuffo::Carbon::ModelFactory->create( 'configuration', $config );
+		unless( $model );
 
 	return $self->render( json => $model->pack() );
 }
