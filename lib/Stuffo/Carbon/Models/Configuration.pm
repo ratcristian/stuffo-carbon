@@ -22,7 +22,11 @@ has 'destination' => (
 	required => 1,
 );
 
-# TODO: Add more features here ...
+has 'max_size' => (
+	is => 'ro',
+	isa => 'Num',
+	default => 2097152, # TODO: This should be a constant
+);
 
 __PACKAGE__->meta()->make_immutable();
 

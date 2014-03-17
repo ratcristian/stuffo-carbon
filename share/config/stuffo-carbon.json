@@ -3,7 +3,7 @@
 		"seed-local" : {
 			"plugin" : "local",
 			"plugin_args" : {},
-			"destination" : "/tmp/seed-local.txt"
+			"destination" : "/tmp/seed-local.txt",
 		},
 
 		"seed-scp" : {

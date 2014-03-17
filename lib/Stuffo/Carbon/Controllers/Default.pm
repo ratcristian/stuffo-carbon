@@ -8,55 +8,88 @@ use Stuffo::Carbon::Helpers::Configuration qw( get_model_from_name );
 sub put {
 	my $self = shift();
 
-	my $model = get_model_from_name( $self->param( 'config' ) );
-	return $self->render_not_found()
-		unless( $model );
+	eval {
+		my $config = get_model_from_name( $self->param( 'config' ) );
+		return $self->render_not_found()
+			unless( $config );
 
-	my $plugin = Stuffo::Carbon::PluginFactory->create( $model->plugin(), $model->plugin_args() );
+		my $plugin = Stuffo::Carbon::PluginFactory->create(
+			$config->plugin(),
+			$config->plugin_args(),
+		);
 
-	$plugin->put(
-		{
-			content => $self->req()->body(),
-			destination => $model->destination(),
-		}
-	);
+		# File size check
+		my $content = $self->req()->body();
+		die( 'Maximum file size exceeded' )
+			if( length( $content ) > $config->max_size() );
 
-	return $self->render( json => {} );
+		$plugin->put(
+			{
+				content => $content,
+				destination => $config->destination(),
+			}
+		);
+
+		return $self->render( json => {} );
+	};
+
+	if( my $error = $@ ){
+		return $self->render(
+			status => 500,
+			json => {
+				message => $error,
+			}
+		);
+	}
 }
 
 sub get {
 	my $self = shift();
 
-	my $model = get_model_from_name( $self->param( 'config' ) );
-	return $self->render_not_found()
-		unless( $model );
+	eval {
+		my $config = get_model_from_name( $self->param( 'config' ) );
+		return $self->render_not_found()
+			unless( $config );
 
-	my $plugin = Stuffo::Carbon::PluginFactory->create( $model->plugin(), $model->plugin_args() );
+		my $plugin = Stuffo::Carbon::PluginFactory->create(
+			$config->plugin(),
+			$config->plugin_args(),
+		);
 
-	my $content = $plugin->get(
-		{
-			destination => $model->destination(),
-		}
-	);
+		my $content = $plugin->get(
+			{
+				destination => $config->destination()
+			}
+		);
 
-	# TODO: Extract only the filename from the path using File::Basename
+		# TODO: Extract only the filename from the path using File::Basename
 
-	return $self->render( json =>
-		{
-			name => $model->destination(),
-			content => $content,
-		}
-	);
+		return $self->render( json =>
+			{
+				name => $config->destination(),
+				content => $content,
+			}
+		);
+	};
+
+	if( my $error = $@ ){
+		return $self->render(
+			status => 500,
+			json => {
+				message => $error,
+			}
+		);
+	}
 }
 
 sub info {
 	my $self = shift();
 
-	my $model = get_model_from_name( $self->param( 'config' ) );
+	my $config = get_model_from_name( $self->param( 'config' ) );
 	return $self->render_not_found()
-		unless( $model );
+		unless( $config );
 
-	return $self->render( json => $model->pack() );
+	return $self->render( json => $config->pack() );
 }
 
 1;
