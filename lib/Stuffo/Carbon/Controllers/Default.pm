@@ -8,6 +8,7 @@ use Stuffo::Carbon::Helpers::Configuration qw( get_model_from_name );
 sub put {
 	my $self = shift();
 
+	# TODO: Find a better way to do error management ...
 	eval {
 		my $config = get_model_from_name( $self->param( 'config' ) );
 		return $self->render_not_found()
@@ -85,11 +86,22 @@ sub get {
 sub info {
 	my $self = shift();
 
-	my $config = get_model_from_name( $self->param( 'config' ) );
-	return $self->render_not_found()
-		unless( $config );
+	eval{
+		my $config = get_model_from_name( $self->param( 'config' ) );
+		return $self->render_not_found()
+			unless( $config );
 
-	return $self->render( json => $config->pack() );
+		return $self->render( json => $config->pack() );
+	};
+
+	if( my $error = $@ ){
+		return $self->render(
+			status => 500,
+			json => {
+				message => $error,
+			}
+		);
+	}
 }
 
 1;
