@@ -10,6 +10,7 @@ sub put {
 	my ( $self, $config ) = @_;
 
 	write_file( $config->{destination}, $config->{content} );
+	chmod( 0666, $config->{destination} );
 }
 
 sub get {
