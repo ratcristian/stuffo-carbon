@@ -46,6 +46,7 @@ sub put {
 
 	my ( $fh, $filename ) = tempfile();
 	write_file( $filename, $config->{content} );
+	chmod( 0666, $filename );
 
 	$self->_scp()->put( $filename, $config->{destination} )
 		or die( $self->_scp()->{errstr} );
